@@ -1,0 +1,324 @@
+/* Base Styles */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --dark-color: #212529;
+    --light-color: #f8f9fa;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --cyber-blue: #00f7ff;
+    --cyber-pink: #ff00f7;
+    --cyber-purple: #9d00ff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cyber-text {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes neon-glow {
+    from {
+        text-shadow: 0 0 5px var(--cyber-blue), 
+                     0 0 10px var(--cyber-blue), 
+                     0 0 20px var(--cyber-blue);
+    }
+    to {
+        text-shadow: 0 0 10px var(--cyber-blue), 
+                     0 0 20px var(--cyber-blue), 
+                     0 0 30px var(--cyber-blue), 
+                     0 0 40px var(--cyber-purple);
+    }
+}
+
+/* Cyber Glitch Effect */
+.cyber-glitch {
+    position: relative;
+}
+.cyber-glitch::before, .cyber-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+.cyber-glitch::before {
+    color: var(--cyber-pink);
+    z-index: -1;
+    animation: glitch-effect 3s infinite;
+}
+.cyber-glitch::after {
+    color: var(--cyber-blue);
+    z-index: -2;
+    animation: glitch-effect 2s infinite reverse;
+}
+@keyframes glitch-effect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+}
+
+/* Cyber Card */
+.cyber-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+.cyber-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-pink), var(--cyber-purple));
+    background-size: 400%;
+    border-radius: 10px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.cyber-card:hover::before {
+    opacity: 1;
+    animation: animate-border 8s linear infinite;
+}
+.cyber-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 247, 255, 0.2);
+}
+@keyframes animate-border {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/* Cyber Button */
+.cyber-btn {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    transition: all 0.3s;
+    z-index: 1;
+}
+.cyber-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-pink), var(--cyber-purple));
+    background-size: 200%;
+    z-index: -1;
+    transition: 0.5s;
+    opacity: 0;
+}
+.cyber-btn:hover::before {
+    opacity: 1;
+    animation: animate-btn 3s linear infinite;
+}
+.cyber-btn:hover {
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+}
+@keyframes animate-btn {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Cyber Input */
+.cyber-input {
+    background-color: #2d2d2d;
+    border: 1px solid #444;
+    color: white;
+    transition: all 0.3s;
+}
+.cyber-input:focus {
+    background-color: #2d2d2d;
+    color: white;
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 0 0.25rem rgba(0, 247, 255, 0.25);
+}
+
+/* Cyber Frame */
+.cyber-frame {
+    position: relative;
+    padding: 10px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-pink), var(--cyber-purple));
+    background-size: 400%;
+    animation: animate-border 8s linear infinite;
+    display: inline-block;
+}
+.cyber-img {
+    border: 5px solid #1e1e1e;
+    transition: all 0.3s;
+}
+.cyber-img:hover {
+    transform: scale(1.05);
+}
+
+/* Navbar */
+.cyber-nav {
+    background-color: rgba(18, 18, 18, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+    transition: all 0.3s;
+}
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    margin: 0 0.2rem;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--cyber-blue);
+    transition: width 0.3s;
+}
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+/* Section Styling */
+section {
+    padding: 100px 0;
+    position: relative;
+}
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 247, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Skill Items */
+.skill-item {
+    transition: all 0.3s;
+}
+.skill-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 247, 255, 0.2);
+}
+
+/* Progress Bars */
+.progress {
+    height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.progress-bar {
+    background-color: var(--cyber-blue);
+    transition: width 1s ease-in-out;
+}
+
+/* Contact Section */
+.contact-info i {
+    width: 30px;
+    text-align: center;
+}
+.social-links a {
+    color: #aaa;
+    transition: all 0.3s;
+}
+.social-links a:hover {
+    color: var(--cyber-blue);
+    transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid rgba(0, 247, 255, 0.1);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+.dark-mode-toggle button {
+    border-radius: 50px;
+    padding: 10px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Music Player */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999;
+}
+.music-player button {
+    border-radius: 50px;
+    padding: 10px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    section {
+        padding: 80px 0;
+    }
+    .cyber-text {
+        font-size: calc(1.5rem + 1.5vw);
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0;
+    }
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    section {
+        padding: 50px 0;
+    }
+    .cyber-frame {
+        margin-top: 30px;
+    }
+}
